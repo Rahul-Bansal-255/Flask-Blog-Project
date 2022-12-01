@@ -1,0 +1,35 @@
+body {
+	background-color: #FAFAFA;
+}
+
+#navbar-space-filler {
+	height: 5rem;
+}
+
+.bg-grey {
+	background-color: #bfbfbf;
+}
+
+#sidebar {
+	display: none;
+}
+
+.anchor {
+	text-decoration: none;
+}
+
+.profile-pic {
+	height: 4rem;
+	width: 4rem;
+	border-radius: 50%;
+}
+
+.border-division {
+	border-left: 1px solid lightgrey;
+}
+
+#home-post-content {
+	display: block;
+	overflow: hidden;
+	height: 6rem;
+}

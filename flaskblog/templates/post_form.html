@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block body %}
+	<div class="card p-3 pt-2">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset>
+				<legend>
+					{{ title }}
+				</legend>
+				<!-- title -->
+				<div class="mb-2">
+					{{ form.title.label(class="form-label") }}
+					{% if form.title.errors %}
+						{{ form.title(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.title.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.title(class="form-control") }}
+					{% endif %}
+				</div>
+				<!-- content -->
+				<div class="mb-2">
+					{{ form.content.label(class="form-label") }}
+					{% if form.content.errors %}
+						{{ form.content(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.content.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.content(class="form-control") }}
+					{% endif %}
+				</div>
+				<!-- submit button -->
+				<div class="mt-3">
+					{{ form.submit(class="btn btn-outline-primary") }}
+				</div>
+			</fieldset>
+		</form>
+	</div>
+{% endblock body %}

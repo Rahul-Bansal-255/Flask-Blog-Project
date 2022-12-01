@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div class="card p-3 pt-2">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset>
+				<legend>
+					Log In
+				</legend>
+				<!-- email -->
+				<div class="mb-2">
+					{{ form.email.label(class="form-label") }}
+					{% if form.email.errors %}
+						{{ form.email(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.email(class="form-control") }}
+					{% endif %}
+				</div>
+				<!-- password -->
+				<div class="mb-2">
+					{{ form.password.label(class="form-label") }}
+					{% if form.password.errors %}
+						{{ form.password(class="form-control is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.password(class="form-control") }}
+					{% endif %}
+				</div>
+				<!-- remember me -->
+				<div class="form-check">
+					{{ form.remember(class='form-check-input') }}
+					{{ form.remember.label(class='form-check-label') }}
+				</div>
+				<!-- submit button -->
+				<div class="my-3">
+					{{ form.submit(class="btn btn-outline-primary") }}
+				</div>
+				<small class="text-muted">
+					<a href="{{ url_for('users.reset_request') }}" class="anchor">
+						Forgot Password?
+					</a>
+				</small>
+			</fieldset>
+		</form>
+	</div>
+	<div class="px-3 pt-2">
+		<p class="text-muted">
+			<small>Need an account?
+				<a class="anchor" href="{{ url_for('users.register') }}">Sign Up</a>
+			</small>
+		</p>
+	</div>
+{% endblock body %}

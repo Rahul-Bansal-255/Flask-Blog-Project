@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+	{% block body %}
+		<div class="mb-2">
+			<img class="profile-pic me-2"
+				src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}">
+			<p class="fs-2 d-inline">Posts from {{ user.username }}({{ posts.total }})</p>
+		</div>
+		{% for post in posts.items %}
+		<div class="card p-3 mb-3">
+			<small class="text-muted d-inline">
+				{{ post.date_posted.strftime('%d-%m-%Y') }}
+			</small>
+			<hr class="m-0 mt-1 bg-grey">
+			<a class="card-title fs-3 anchor text-dark" 
+				href="{{ url_for('posts.post_page', post_id=post.id) }}">
+				{{ post.title }}
+			</a>
+			<p class="card-text fs-5 my-2">
+				{{ post.content }}
+			</p>
+		</div>
+		{% endfor %}
+
+		{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=3) %}
+			{% if page_num %}
+				{% if posts.page == page_num %}
+					<a class="btn btn-info mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">
+					{{ page_num }}</a>
+				{% else %}
+					<a class="btn btn-outline-info mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">
+					{{ page_num }}</a>
+				{% endif %}
+			{% else %}
+				...
+			{% endif %}
+		{% endfor %}
+	{% endblock body %}
